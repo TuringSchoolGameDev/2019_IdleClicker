@@ -13,15 +13,27 @@ public class Generator : MonoBehaviour
 
 	public Text generatoriasPavadinimoTekstas;
 
+	public float kiekEnergijoSusigeneruojaNuoVienoKliko;
+
 	void Start()
     {
-		generatoriasPavadinimoTekstas.text = generatoriausVardas;
-
+		if (generatoriasPavadinimoTekstas != null) 
+		{
+			generatoriasPavadinimoTekstas.text = generatoriausVardas;
+		}
 	}
 
-	void Update()
-    {
-        
-    }
+	public void Patobulinimas()
+	{
+		if (GameManager.globalusKintamasis.visiSukauptiPinigai >= kaina)
+		{
+			GameManager.globalusKintamasis.visiSukauptiPinigai = GameManager.globalusKintamasis.visiSukauptiPinigai - kaina;
+			kiekYraPatobulinimu = kiekYraPatobulinimu + 1;
+		}
+	}
 
+	public void KlikoGeneravimas()
+	{
+		GameManager.globalusKintamasis.visaSugeneruotaEnergija = GameManager.globalusKintamasis.visaSugeneruotaEnergija + kiekEnergijoSusigeneruojaNuoVienoKliko * kiekYraPatobulinimu;
+	}
 }

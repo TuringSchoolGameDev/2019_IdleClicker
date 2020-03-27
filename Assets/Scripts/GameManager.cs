@@ -5,14 +5,19 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+	public static GameManager globalusKintamasis;
+
 	public float visaSugeneruotaEnergija;
 	public Text visosSugeneruotosEnergijosTekstas;
 
+	public float visiSukauptiPinigai;
+	public Text visiSukauptiPinigaiTekstas;
+
 	public List<Generator> generatoriai;
 
-	void Start()
+	void Awake()
 	{
-
+		globalusKintamasis = this;
 	}
 
 	void Update()
@@ -23,5 +28,6 @@ public class GameManager : MonoBehaviour
 		}
 
 		visosSugeneruotosEnergijosTekstas.text = visaSugeneruotaEnergija + "";
+		visiSukauptiPinigaiTekstas.text = visiSukauptiPinigai + "";
 	}
 }
