@@ -34,6 +34,6 @@ public class Generator : MonoBehaviour
 
 	public void KlikoGeneravimas()
 	{
-		GameManager.globalusKintamasis.visaSugeneruotaEnergija = GameManager.globalusKintamasis.visaSugeneruotaEnergija + kiekEnergijoSusigeneruojaNuoVienoKliko * kiekYraPatobulinimu;
+		GameManager.globalusKintamasis.klikuSugeneruotaEnergija = GameManager.globalusKintamasis.klikuSugeneruotaEnergija + kiekEnergijoSusigeneruojaNuoVienoKliko * kiekYraPatobulinimu;
 	}
 }
