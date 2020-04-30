@@ -14,9 +14,10 @@ public class GameManager : MonoBehaviour
 
 	public List<Generator> generatoriai;
 
-	public GameObject priesoPrefabas;
+	public List<GameObject> priesoPrefabai;
 	public Transform priesoTevas;
 	public Enemy dabartinisPriesas;
+	public float kiekEnergijosTuresPriesas;
 
 	void Awake()
 	{
@@ -51,8 +52,11 @@ public class GameManager : MonoBehaviour
 	{
 		if (dabartinisPriesas == null)//true || false
 		{
-			GameObject priesas = Instantiate(priesoPrefabas, priesoTevas);
+			GameObject vienasPriesoPrefabas = priesoPrefabai[Random.Range(0, priesoPrefabai.Count)];
+			GameObject priesas = Instantiate(vienasPriesoPrefabas, priesoTevas);
 			dabartinisPriesas = priesas.GetComponent<Enemy>();
+			dabartinisPriesas.PoPriesoSukurimo(kiekEnergijosTuresPriesas);
+			kiekEnergijosTuresPriesas = kiekEnergijosTuresPriesas + 1;
 		}
 	}
 

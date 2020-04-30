@@ -1739,10 +1739,14 @@ MonoBehaviour:
   - {fileID: 159005698}
   - {fileID: 74956202}
   - {fileID: 1030073603}
-  priesoPrefabas: {fileID: 6855543794250276220, guid: b6830e8be823788498e2b0262a28bc7f,
-    type: 3}
+  priesoPrefabai:
+  - {fileID: 6855543794250276220, guid: b6830e8be823788498e2b0262a28bc7f, type: 3}
+  - {fileID: 6855543794250276220, guid: 27b4a879b9ebfa94a9838de6f6dc61e3, type: 3}
+  - {fileID: 6855543794250276220, guid: 8b6986458a4814a4ab4315e16d351e76, type: 3}
+  - {fileID: 6855543794250276220, guid: 34aad5968c181db4a8b1989d5be913a0, type: 3}
   priesoTevas: {fileID: 1348492968}
   dabartinisPriesas: {fileID: 0}
+  kiekEnergijosTuresPriesas: 10
 --- !u!4 &1371017957
 Transform:
   m_ObjectHideFlags: 0
