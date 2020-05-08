@@ -8,9 +8,12 @@ public class Generator : MonoBehaviour
 	//matomumas - kintamojo tipas - kintamojo vardas
 	public string generatoriausVardas;
 	public float kaina;
+	public float didejimoIvertis;
 	public int kiekYraPatobulinimu;
 	public float energijosGeneravimas;
 
+	public Text generatoriauKainaTekstas;
+	public Text generatoriausLygisTekstas;
 	public Text generatoriasPavadinimoTekstas;
 
 	public float kiekEnergijoSusigeneruojaNuoVienoKliko;
@@ -23,13 +26,31 @@ public class Generator : MonoBehaviour
 		}
 	}
 
+	private void Update()
+	{
+		if (generatoriauKainaTekstas != null)
+		{
+			generatoriauKainaTekstas.text = GrazinkDabartineKaina() + "";
+		}
+		if (generatoriausLygisTekstas != null)
+		{
+			generatoriausLygisTekstas.text = kiekYraPatobulinimu + "";
+		}
+	}
+
 	public void Patobulinimas()
 	{
-		if (GameManager.globalusKintamasis.visiSukauptiPinigai >= kaina)
+		if (GameManager.globalusKintamasis.visiSukauptiPinigai >= GrazinkDabartineKaina())
 		{
-			GameManager.globalusKintamasis.visiSukauptiPinigai = GameManager.globalusKintamasis.visiSukauptiPinigai - kaina;
+			GrazinkDabartineKaina();
+			GameManager.globalusKintamasis.visiSukauptiPinigai = GameManager.globalusKintamasis.visiSukauptiPinigai - GrazinkDabartineKaina();
 			kiekYraPatobulinimu = kiekYraPatobulinimu + 1;
 		}
+	}
+
+	public float GrazinkDabartineKaina()
+	{
+		return kaina * Mathf.Pow(didejimoIvertis, kiekYraPatobulinimu);
 	}
 
 	public void KlikoGeneravimas()

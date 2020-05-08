@@ -6,12 +6,13 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+	public float bazineStartineEnergija;
 	public float startineEnergija;
 	public float startinisGyvybiuEilutesDydis;
+	public float didejimoIvertis;
 
 	[NonSerialized]
 	public float energija;//float tai yra skaicius su kableliu 0.1, 0.5
-	public float pinigai;//float tai yra skaicius su kableliu 0.1, 0.5, 21.0
 
 	public RectTransform gyvybiuEilute;
 
@@ -20,12 +21,16 @@ public class Enemy : MonoBehaviour
 		startinisGyvybiuEilutesDydis = gyvybiuEilute.sizeDelta.x;
 	}
 
-	public void PoPriesoSukurimo(float kiekEnergijos)
+	public void PoPriesoSukurimo()
 	{
-		energija = kiekEnergijos;
+		energija = KiekEnergijosTuriSitasPriesasPradzioje();
 		startineEnergija = energija;//sukurimo metu energija yra startineenergija
 	}
 
+	public float KiekEnergijosTuriSitasPriesasPradzioje()
+	{
+		return bazineStartineEnergija * Mathf.Pow(didejimoIvertis, GameManager.globalusKintamasis.kiekEsamNugalejePriesu);
+	}
 
 	private void Update()//kiekvienam kadre mums atlieka kazkoki koda
 	{

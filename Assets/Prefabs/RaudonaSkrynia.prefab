@@ -160,9 +160,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acca931b7c1fd0f42a4518ac2d33b828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bazineStartineEnergija: 10
   startineEnergija: 0
   startinisGyvybiuEilutesDydis: 0
-  energija: 10
+  didejimoIvertis: 1.08
   pinigai: 10
   gyvybiuEilute: {fileID: 3774339585282143509}
 --- !u!1 &8721237468436773310

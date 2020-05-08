@@ -17,7 +17,11 @@ public class GameManager : MonoBehaviour
 	public List<GameObject> priesoPrefabai;
 	public Transform priesoTevas;
 	public Enemy dabartinisPriesas;
-	public float kiekEnergijosTuresPriesas;
+
+	public int kiekEsamNugalejePriesu;
+
+	public float bazinisPiniguSkaicius;
+	public float piniguDidejimoIvertis;
 
 	void Awake()
 	{
@@ -55,8 +59,7 @@ public class GameManager : MonoBehaviour
 			GameObject vienasPriesoPrefabas = priesoPrefabai[Random.Range(0, priesoPrefabai.Count)];
 			GameObject priesas = Instantiate(vienasPriesoPrefabas, priesoTevas);
 			dabartinisPriesas = priesas.GetComponent<Enemy>();
-			dabartinisPriesas.PoPriesoSukurimo(kiekEnergijosTuresPriesas);
-			kiekEnergijosTuresPriesas = kiekEnergijosTuresPriesas + 1;
+			dabartinisPriesas.PoPriesoSukurimo();
 		}
 	}
 
@@ -68,9 +71,15 @@ public class GameManager : MonoBehaviour
 			dabartinisPriesas.energija = dabartinisPriesas.energija - klikuSugeneruotaEnergija;
 			if (dabartinisPriesas.energija <= 0)
 			{
-				visiSukauptiPinigai = visiSukauptiPinigai + dabartinisPriesas.pinigai;
+				visiSukauptiPinigai = visiSukauptiPinigai + KiekPiniguGrazinsPriesas();
+				kiekEsamNugalejePriesu = kiekEsamNugalejePriesu + 1;
 				Destroy(dabartinisPriesas.gameObject);
 			}
 		}
+	}
+
+	public float KiekPiniguGrazinsPriesas()
+	{
+		return bazinisPiniguSkaicius * Mathf.Pow(piniguDidejimoIvertis, kiekEsamNugalejePriesu);
 	}
 }
