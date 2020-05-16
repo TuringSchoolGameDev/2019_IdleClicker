@@ -164,7 +164,6 @@ MonoBehaviour:
   startineEnergija: 0
   startinisGyvybiuEilutesDydis: 0
   didejimoIvertis: 1.08
-  pinigai: 10
   gyvybiuEilute: {fileID: 3774339585282143509}
 --- !u!1 &8721237468436773310
 GameObject:

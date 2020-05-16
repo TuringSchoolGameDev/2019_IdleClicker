@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 	public float bazinisPiniguSkaicius;
 	public float piniguDidejimoIvertis;
 
+	public GameObject sprogimoPrefabas;
+
 	void Awake()
 	{
 		globalusKintamasis = this;
@@ -73,6 +75,7 @@ public class GameManager : MonoBehaviour
 			{
 				visiSukauptiPinigai = visiSukauptiPinigai + KiekPiniguGrazinsPriesas();
 				kiekEsamNugalejePriesu = kiekEsamNugalejePriesu + 1;
+				GameObject sprogimoEfektas = Instantiate(sprogimoPrefabas, dabartinisPriesas.transform.position, Quaternion.identity, null);
 				Destroy(dabartinisPriesas.gameObject);
 			}
 		}
