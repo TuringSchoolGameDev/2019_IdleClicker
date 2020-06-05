@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -28,6 +29,12 @@ public class GameManager : MonoBehaviour
 	void Awake()
 	{
 		globalusKintamasis = this;
+	}
+
+	private void Start()
+	{
+		kiekEsamNugalejePriesu = PlayerPrefs.GetInt("NugaletiPriesai", 0);
+		visiSukauptiPinigai = PlayerPrefs.GetFloat("VisiSukauptiPinigai", 0);
 	}
 
 	void Update()
@@ -75,6 +82,8 @@ public class GameManager : MonoBehaviour
 			{
 				visiSukauptiPinigai = visiSukauptiPinigai + KiekPiniguGrazinsPriesas();
 				kiekEsamNugalejePriesu = kiekEsamNugalejePriesu + 1;
+				PlayerPrefs.SetInt("NugaletiPriesai", kiekEsamNugalejePriesu);
+				PlayerPrefs.SetFloat("VisiSukauptiPinigai", visiSukauptiPinigai);
 				GameObject sprogimoEfektas = Instantiate(sprogimoPrefabas, dabartinisPriesas.transform.position, Quaternion.identity, null);
 				Destroy(dabartinisPriesas.gameObject);
 			}
@@ -84,5 +93,16 @@ public class GameManager : MonoBehaviour
 	public float KiekPiniguGrazinsPriesas()
 	{
 		return bazinisPiniguSkaicius * Mathf.Pow(piniguDidejimoIvertis, kiekEsamNugalejePriesu);
+	}
+
+	public void PradetiPerNauja()
+	{
+		PlayerPrefs.SetInt("NugaletiPriesai", 0);
+		PlayerPrefs.SetFloat("VisiSukauptiPinigai", 0);
+		for (int i = 0; i < generatoriai.Count; i++)
+		{
+			PlayerPrefs.SetInt(generatoriai[i].generatoriausVardas, 0);
+		}
+		SceneManager.LoadScene(0);
 	}
 }

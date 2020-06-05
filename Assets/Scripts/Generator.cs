@@ -11,10 +11,12 @@ public class Generator : MonoBehaviour
 	public float didejimoIvertis;
 	public int kiekYraPatobulinimu;
 	public float energijosGeneravimas;
+	public Sprite paveiksliukas;
 
 	public Text generatoriauKainaTekstas;
 	public Text generatoriausLygisTekstas;
 	public Text generatoriasPavadinimoTekstas;
+	public Image generatoriausPaveiksliukas;
 
 	public float kiekEnergijoSusigeneruojaNuoVienoKliko;
 
@@ -24,6 +26,11 @@ public class Generator : MonoBehaviour
 		{
 			generatoriasPavadinimoTekstas.text = generatoriausVardas;
 		}
+		if (generatoriausPaveiksliukas != null)
+		{
+			generatoriausPaveiksliukas.sprite = paveiksliukas;
+		}
+		kiekYraPatobulinimu = PlayerPrefs.GetInt(generatoriausVardas, 0);
 	}
 
 	private void Update()
@@ -45,6 +52,7 @@ public class Generator : MonoBehaviour
 			GrazinkDabartineKaina();
 			GameManager.globalusKintamasis.visiSukauptiPinigai = GameManager.globalusKintamasis.visiSukauptiPinigai - GrazinkDabartineKaina();
 			kiekYraPatobulinimu = kiekYraPatobulinimu + 1;
+			PlayerPrefs.SetInt(generatoriausVardas, kiekYraPatobulinimu);
 		}
 	}
 
@@ -55,6 +63,6 @@ public class Generator : MonoBehaviour
 
 	public void KlikoGeneravimas()
 	{
-		GameManager.globalusKintamasis.klikuSugeneruotaEnergija = GameManager.globalusKintamasis.klikuSugeneruotaEnergija + kiekEnergijoSusigeneruojaNuoVienoKliko * kiekYraPatobulinimu;
+		GameManager.globalusKintamasis.klikuSugeneruotaEnergija = GameManager.globalusKintamasis.klikuSugeneruotaEnergija + kiekEnergijoSusigeneruojaNuoVienoKliko;
 	}
 }
