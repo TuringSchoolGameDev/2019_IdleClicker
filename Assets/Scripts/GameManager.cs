@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
 	public float bazinisPiniguSkaicius;
 	public float piniguDidejimoIvertis;
+	public float superBonusas;
 
 	public GameObject sprogimoPrefabas;
 
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
 	{
 		kiekEsamNugalejePriesu = PlayerPrefs.GetInt("NugaletiPriesai", 0);
 		visiSukauptiPinigai = PlayerPrefs.GetFloat("VisiSukauptiPinigai", 0);
+		superBonusas = PlayerPrefs.GetFloat("SuperBonusas", 1);
 	}
 
 	void Update()
@@ -44,6 +46,8 @@ public class GameManager : MonoBehaviour
 		SukurkimPriesaJeiJisNeegzistuoja();
 		DarytiZalaPriesui(sugeneruotaEnergijaVienameKadre);
 		klikuSugeneruotaEnergija = 0;
+
+		test = GrazinkDabartineKaina();
 	}
 
 	float VisaVienameKadreSugeneruotaMusuEnergija()
@@ -51,7 +55,7 @@ public class GameManager : MonoBehaviour
 		float visaSugeneruotaEnergija = 0;
 		for (int i = 0; i < generatoriai.Count; i++)
 		{
-			visaSugeneruotaEnergija = visaSugeneruotaEnergija + generatoriai[i].energijosGeneravimas * generatoriai[i].kiekYraPatobulinimu * Time.deltaTime;
+			visaSugeneruotaEnergija = visaSugeneruotaEnergija + Mathf.Pow(generatoriai[i].energijosGeneravimas * generatoriai[i].kiekYraPatobulinimu * Time.deltaTime, superBonusas);
 		}
 		return visaSugeneruotaEnergija;
 	}
@@ -97,12 +101,26 @@ public class GameManager : MonoBehaviour
 
 	public void PradetiPerNauja()
 	{
-		PlayerPrefs.SetInt("NugaletiPriesai", 0);
-		PlayerPrefs.SetFloat("VisiSukauptiPinigai", 0);
-		for (int i = 0; i < generatoriai.Count; i++)
+		if (GameManager.globalusKintamasis.visiSukauptiPinigai >= GrazinkDabartineKaina())
 		{
-			PlayerPrefs.SetInt(generatoriai[i].generatoriausVardas, 0);
+			GameManager.globalusKintamasis.visiSukauptiPinigai = GameManager.globalusKintamasis.visiSukauptiPinigai - GrazinkDabartineKaina();
+
+			PlayerPrefs.SetInt("NugaletiPriesai", 0);
+			PlayerPrefs.SetFloat("VisiSukauptiPinigai", 0);
+			for (int i = 0; i < generatoriai.Count; i++)
+			{
+				PlayerPrefs.SetInt(generatoriai[i].generatoriausVardas, 0);
+			}
+
+			superBonusas = superBonusas + 0.01f; 
+			PlayerPrefs.SetFloat("SuperBonusas", superBonusas);
+			SceneManager.LoadScene(0);
 		}
-		SceneManager.LoadScene(0);
+	}
+
+	public float test;
+	public float GrazinkDabartineKaina()
+	{
+		return 100;
 	}
 }

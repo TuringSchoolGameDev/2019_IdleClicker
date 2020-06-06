@@ -49,7 +49,6 @@ public class Generator : MonoBehaviour
 	{
 		if (GameManager.globalusKintamasis.visiSukauptiPinigai >= GrazinkDabartineKaina())
 		{
-			GrazinkDabartineKaina();
 			GameManager.globalusKintamasis.visiSukauptiPinigai = GameManager.globalusKintamasis.visiSukauptiPinigai - GrazinkDabartineKaina();
 			kiekYraPatobulinimu = kiekYraPatobulinimu + 1;
 			PlayerPrefs.SetInt(generatoriausVardas, kiekYraPatobulinimu);
